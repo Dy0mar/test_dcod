@@ -1,0 +1,22 @@
+{% extends 'app_parser/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block info %}
+    <h1>Import data file</h1>
+    <p>data will create or update</p>
+    <form enctype="multipart/form-data" method="post" action="{% url 'import' %}">{% csrf_token %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger"><strong>{{ error|escape }}</strong></div>
+                {% endfor %}
+                {{ field.label }}{{ field }}
+
+            {% endfor %}
+        {% else %}
+            {{ form.as_table }}
+        {% endif %}
+        <input type="submit" value="OK"/>
+    </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'app_parser/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block info %}
+    {% if regions %}
+        {{ form }}
+        <script>
+            var region_name = $("#id_region_name");
+            region_name.change(function () {
+                var id = $(this).val();
+                var name = $(this).find("option:selected").text();
+                new_chart(name)
+            });
+            new_chart(region_name.find("option:selected").text());
+        </script>
+    {% else %}
+        <h2>Empty</h2>
+        <b>Please import csv file</b>
+
+    {% endif %}
+    <div id="chartdiv"></div>
+{% endblock %}
+

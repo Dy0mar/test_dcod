@@ -1,0 +1,19 @@
+{% extends 'app_parser/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+{% block info %} {{ msg }}
+
+    <ul>
+        {% for item, record in records.items %}
+            <li>
+                <b>{{ item }} -- </b>
+                {% for i in record %}
+                    {{ i.city }} = {{ i.value }},
+                {% endfor %}
+                <br>
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+
